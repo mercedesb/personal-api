@@ -23,7 +23,6 @@ module.exports = (req, res) => {
       }
     })
 
-    // setup email data with unicode symbols
     const mailOptions={
       to: process.env.TO_EMAIL,
       from: req.query.from,

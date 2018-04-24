@@ -1,6 +1,6 @@
-const models = require('express').Router();
-const sendMail = require('./sendMail');
+const routes = require('express').Router()
+const sendMail = require('./sendMail')
 
-models.get('/send', sendMail);
+routes.get('/send', sendMail)
 
-module.exports = models;
+module.exports = routes
