@@ -35,7 +35,8 @@ module.exports = (req, res) => {
         res.status(500).json({error: error})
       }
       else {
-        console.log(response)
+        // Preview only available when sending through an Ethereal account
+        console.log('Preview URL: %s', nodemailer.getTestMessageUrl(response));
         res.status(200).json({success: true})
       }
     })
