@@ -3,7 +3,6 @@ const nodemailer = require("nodemailer")
 // should define SMTP transport here
 
 module.exports = (req, res) => {
-  console.log('code reached')
   if (!process.env.TO_EMAIL) {
     res.status(500).json({error: "I'm so sorry, I could not send your email at this time"})
     return
@@ -36,7 +35,7 @@ module.exports = (req, res) => {
         res.status(500).json({error: error})
       }
       else {
-        console.log("Message sent: " + response.message)
+        console.log(response)
         res.status(200).json({success: true})
       }
     })

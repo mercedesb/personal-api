@@ -1,4 +1,8 @@
 // Dependencies
+
+
+require('dotenv').load();
+
 var app        = require('express')()
 var bodyParser = require('body-parser')
 const routes = require('./routes')
