@@ -60,6 +60,13 @@ module.exports = (req, res) => {
     text:  req.body.text
   }
 
+  for (var key in mailOptions) {
+    if (mailOptions.hasOwnProperty(key) && !mailOptions[key]) {
+      res.status(400).json({error: `I'm sorry I could not send your email, missing ${key}`})
+      return
+    }
+  }
+
   getTransport()
   .then((smtpTransport) => {
     smtpTransport.sendMail(mailOptions, function(error, response){
