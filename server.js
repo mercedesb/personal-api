@@ -1,6 +1,3 @@
-// Dependencies
-
-
 require('dotenv').load();
 
 var app        = require('express')()
@@ -18,5 +15,7 @@ app.use(bodyParser.json())
 var port = process.env.PORT || 8090
 
 app.listen(port, () => {
-  console.log('Magic happens on port ' + port)
+  if (process.env.NODE_ENV === 'development') {
+    console.log('Magic happens on port ' + port)
+  }
 })

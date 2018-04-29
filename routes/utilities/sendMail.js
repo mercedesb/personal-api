@@ -64,7 +64,6 @@ module.exports = (req, res) => {
   .then((smtpTransport) => {
     smtpTransport.sendMail(mailOptions, function(error, response){
       if(error){
-        console.log(error)
         res.status(500).json({error: error})
       }
       else {
