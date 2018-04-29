@@ -18,6 +18,7 @@
   },
   "homepage": "https://github.com/mercedesb/personal-api#readme",
   "dependencies": {
+    "cors": "^2.8.4",
     "dotenv": "^5.0.1",
     "express": "^4.16.3",
     "nodemailer": "^4.6.4",
