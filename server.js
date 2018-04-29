@@ -1,6 +1,7 @@
 require('dotenv').load();
 const isDevelopment = process.env.NODE_ENV === 'development'
 const cors = require('cors')
+const helmet = require('helmet')
 
 var app = require('express')()
 
@@ -25,6 +26,8 @@ const corsOptions = {
 
 app.use(cors(corsOptions))
 app.options('*', cors(corsOptions))
+
+app.use(helmet())
 
 const routes = require('./routes')
 app.use('/', routes)
