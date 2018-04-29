@@ -55,9 +55,9 @@ module.exports = (req, res) => {
 
   const mailOptions={
     to: process.env.TO_EMAIL,
-    from: req.query.from,
-    subject: req.query.subject,
-    text:  req.query.text
+    from: req.body.from,
+    subject: req.body.subject,
+    text:  req.body.text
   }
 
   getTransport()
