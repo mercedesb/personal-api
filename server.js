@@ -1,9 +1,9 @@
 require('dotenv').load();
-const isDevelopment = process.env.NODE_ENV === 'development'
+const isDevelopment = process.env.NODE_ENV === 'development' || process.env.NODE_ENV === 'test'
 const cors = require('cors')
 const helmet = require('helmet')
 
-var app = require('express')()
+let app = require('express')()
 
 let corsOrigin
 if (isDevelopment) {
@@ -33,10 +33,12 @@ const routes = require('./routes')
 app.use('/', routes)
 
 // Start server
-var port = process.env.PORT || 8090
+let port = process.env.PORT || 8090
 
 app.listen(port, () => {
   if (isDevelopment) {
     console.log('Magic happens on port ' + port)
   }
 })
+
+module.exports = app
