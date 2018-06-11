@@ -11,7 +11,7 @@ if (isDevelopment) {
 } else {
   corsOrigin = function (origin, callback) {
     const whitelist = process.env.CORS_WHITELIST.split(',')
-    if (whitelist.indexOf(origin) !== -1) {
+    if (origin === undefined || whitelist.indexOf(origin) !== -1) {
       callback(null, true)
     } else {
       callback(new Error('Not allowed by CORS'))
