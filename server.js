@@ -10,6 +10,7 @@ if (isDevelopment) {
   corsOrigin = '*'
 } else {
   corsOrigin = function (origin, callback) {
+    console.log(origin)
     const whitelist = process.env.CORS_WHITELIST.split(',')
     if (origin === undefined || whitelist.indexOf(origin) !== -1) {
       callback(null, true)
