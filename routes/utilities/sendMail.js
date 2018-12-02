@@ -28,7 +28,7 @@ getTransport = () => {
   let smtpTransport
 
   return new Promise(function(resolve, reject) {
-    if (process.env.NODE_ENV == 'development') {
+    if (process.env.NODE_ENV === 'development' || process.env.NODE_ENV === 'test') {
       nodemailer.createTestAccount((err, account) => {
         if (err) {
           reject(err)
@@ -52,20 +52,18 @@ sendMail = (to, req, res) => {
     to: to,
     from: req.body.from,
     subject: req.body.subject,
-    text: req.body.text
+    text: getBodyText(req)
   }
-
+  
   for (var key in mailOptions) {
     if (mailOptions.hasOwnProperty(key) && !mailOptions[key]) {
       res.status(400).json({ error: `I'm sorry I could not send your email, missing ${key}` })
       return
     }
   }
-
+  
   getTransport()
     .then((smtpTransport) => {
-      console.log(smtpTransport)
-
       smtpTransport.sendMail(mailOptions, function (error, response) {
         if (error) {
           console.log(error)
@@ -80,6 +78,23 @@ sendMail = (to, req, res) => {
         }
       })
     })
+}
+
+getBodyText = (req) => {
+  let text = ''
+  if (!!req.body.name) {
+    text += `Name: ${req.body.name}\n`
+  }
+
+  if (!!req.body.from) {
+    text += `Email: ${req.body.from}\n`
+  }
+
+  if (!!req.body.text) {
+    text += req.body.text
+  }
+
+  return text
 }
 
 module.exports = {

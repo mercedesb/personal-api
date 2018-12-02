@@ -66,7 +66,6 @@ describe('sendMail', () => {
           .post('/utilities/send')
           .send(request)
           .end((err, res) => {
-            console.log(res)
             res.should.have.status(200);
             done();
           });
